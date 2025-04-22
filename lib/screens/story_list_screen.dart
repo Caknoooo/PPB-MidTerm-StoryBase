@@ -1,4 +1,3 @@
-// screens/story_list_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -49,7 +48,6 @@ class _StoryListScreenState extends State<StoryListScreen>
   }
 
   void _scrollListener() {
-    // Hide FAB when scrolling down, show when scrolling up
     if (_scrollController.position.userScrollDirection ==
         ScrollDirection.reverse) {
       if (_showFab) {
@@ -88,7 +86,6 @@ class _StoryListScreenState extends State<StoryListScreen>
   }
 
   Future<void> _deleteStory(String id, String title) async {
-    // Add haptic feedback
     HapticFeedback.mediumImpact();
 
     final success = await _storyProvider.deleteStory(id);
@@ -140,14 +137,12 @@ class _StoryListScreenState extends State<StoryListScreen>
   }
 
   Widget _buildGridCard(Story story, int index) {
-    // Generate a random rotation between -5 and 5 degrees for a staggered effect
     final double randomRotation =
         (math.Random(index).nextDouble() - 0.5) * 0.05;
 
     return AnimatedBuilder(
       animation: _fadeAnimation,
       builder: (context, child) {
-        // Stagger the animations
         final delayedAnimation = _animationController.drive(
           CurveTween(
             curve: Interval(0.05 * (index % 10), 1.0, curve: Curves.easeOut),
@@ -202,7 +197,6 @@ class _StoryListScreenState extends State<StoryListScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image with gradient overlay
                   Stack(
                     children: [
                       ClipRRect(
@@ -246,7 +240,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                                   ),
                         ),
                       ),
-                      // Gradient overlay
                       Positioned.fill(
                         child: ClipRRect(
                           borderRadius: const BorderRadius.only(
@@ -268,7 +261,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                           ),
                         ),
                       ),
-                      // Title on image
                       Positioned(
                         bottom: 12,
                         left: 12,
@@ -293,7 +285,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                       ),
                     ],
                   ),
-                  // Content preview
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
@@ -309,7 +300,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                       ),
                     ),
                   ),
-                  // Action buttons
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -320,7 +310,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Tags or metadata
                         Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -343,7 +332,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                             ),
                           ),
                         ),
-                        // Action buttons
                         Row(
                           children: [
                             Material(
@@ -458,7 +446,6 @@ class _StoryListScreenState extends State<StoryListScreen>
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image section
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: SizedBox(
@@ -499,7 +486,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                     ),
                   ),
                   const SizedBox(width: 16),
-                  // Content section
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -527,7 +513,6 @@ class _StoryListScreenState extends State<StoryListScreen>
                           ),
                         ),
                         const SizedBox(height: 12),
-                        // Action buttons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -653,7 +638,6 @@ class _StoryListScreenState extends State<StoryListScreen>
           ),
         ),
         actions: [
-          // Search button
           IconButton(
             icon: AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
@@ -676,7 +660,6 @@ class _StoryListScreenState extends State<StoryListScreen>
               }
             },
           ),
-          // Toggle view button
           IconButton(
             icon: AnimatedSwitcher(
               duration: const Duration(milliseconds: 300),
@@ -892,7 +875,6 @@ class _StoryListScreenState extends State<StoryListScreen>
             child: Column(
               children: [
                 const SizedBox(height: 8),
-                // Handle
                 Container(
                   width: 40,
                   height: 5,
@@ -1104,7 +1086,6 @@ class _StoryListScreenState extends State<StoryListScreen>
   }
 
   Future<void> _showDeleteConfirmationDialog(Story story) async {
-    // Add haptic feedback
     HapticFeedback.mediumImpact();
 
     return showDialog(
