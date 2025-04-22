@@ -1,4 +1,3 @@
-// screens/story_form_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -133,7 +132,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Store provider reference safely
     _storyProvider = Provider.of<StoryProvider>(context, listen: false);
   }
 
@@ -178,7 +176,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
         _isLoading = true;
       });
 
-      // Add haptic feedback for form submission
       HapticFeedback.mediumImpact();
 
       String? imageUrl;
@@ -238,7 +235,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
         _showErrorDialog('Error saving story: $e');
       }
     } else {
-      // If validation fails, provide haptic feedback
       HapticFeedback.vibrate();
     }
   }
@@ -311,7 +307,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
       _isPreviewMode = !_isPreviewMode;
 
       if (_isPreviewMode) {
-        // Validate and set image URL for preview
         final url = _imageUrlController.text;
         _previewImageUrl = isValidImageUrl(url) ? url : null;
       }
@@ -523,7 +518,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
           },
         ),
         actions: [
-          // Preview toggle button
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             transitionBuilder: (Widget child, Animation<double> animation) {
@@ -572,7 +566,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                   builder: (context, constraints) {
                     return Stack(
                       children: [
-                        // Form View
                         AnimatedOpacity(
                           opacity: _isPreviewMode ? 0.0 : 1.0,
                           duration: const Duration(milliseconds: 300),
@@ -607,7 +600,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                           CrossAxisAlignment.stretch,
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        // Title Field
                                         AnimatedContainer(
                                           duration: const Duration(
                                             milliseconds: 200,
@@ -754,7 +746,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                         ),
                                         const SizedBox(height: 24.0),
 
-                                        // Content Field
                                         AnimatedContainer(
                                           duration: const Duration(
                                             milliseconds: 200,
@@ -829,7 +820,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                                     ),
                                                   ),
                                                   const Spacer(),
-                                                  // Word count
                                                   Container(
                                                     padding:
                                                         const EdgeInsets.symmetric(
@@ -924,7 +914,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                                         TextCapitalization
                                                             .sentences,
                                                   ),
-                                                  // Button overlay
                                                   Positioned(
                                                     bottom: 8,
                                                     right: 8,
@@ -981,7 +970,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                                   ),
                                                 ],
                                               ),
-                                              // Character count
                                               Align(
                                                 alignment:
                                                     Alignment.centerRight,
@@ -1005,7 +993,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                         ),
                                         const SizedBox(height: 24.0),
 
-                                        // Image URL Field
                                         AnimatedContainer(
                                           duration: const Duration(
                                             milliseconds: 200,
@@ -1173,7 +1160,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                           ),
                         ),
 
-                        // Preview Mode
                         AnimatedOpacity(
                           opacity: _isPreviewMode ? 1.0 : 0.0,
                           duration: const Duration(milliseconds: 300),
@@ -1190,7 +1176,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // Preview Header
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 8,
@@ -1232,7 +1217,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                   ),
                                   const SizedBox(height: 24),
 
-                                  // Cover Image
                                   if (_previewImageUrl != null)
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
@@ -1285,7 +1269,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                     ),
                                   const SizedBox(height: 24),
 
-                                  // Title
                                   Text(
                                     _titleText.isEmpty
                                         ? 'Untitled Story'
@@ -1298,7 +1281,6 @@ class _StoryFormScreenState extends State<StoryFormScreen>
                                   ),
                                   const SizedBox(height: 24),
 
-                                  // Content
                                   Text(
                                     _contentText.isEmpty
                                         ? 'No content added yet. Start writing your story...'
